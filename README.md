@@ -1,8 +1,12 @@
-# React + Vite
+# Blog Website Development
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is an ongoing development of a blog website using React. The documentation is not yet completed. Please check back later for updates.
 
-Currently, two official plugins are available:
+## Features and Progress
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Set up the project structure
+- Integrated Appwrite for authentication and data storage
+- Implemented user authentication
+
+Stay tuned for more updates!
+
