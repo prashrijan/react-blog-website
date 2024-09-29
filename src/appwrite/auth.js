@@ -1,32 +1,63 @@
 import conf from '../conf/conf.js'
-import {Client, Account, ID} from 'appwrite'
+import { Client, Account, ID } from "appwrite";
 
-export class AuthSerivce{
-    client = new Client()
+export class AuthService{
+    client = new Client();
     account;
+
     constructor(){
         this.client
             .setEndpoint(conf.appwriteUrl)
-            .setProject(conf.apwriteProjectId);
-        this.account = new Account(this.client)    
+            .setProject(conf.appwriteProjectId);
+
+        this.account = new Account(this.client)
     }
 
-    async createAccount({email, password, name}){
+    async createAccount ({email, password, name}){
         try {
             const userAccount = await this.account.create(ID.unique(), email, password, name)
-            
-            // check if user is created
+
             if(userAccount){
-                // call another method
-            }else{
-                return userAccount 
+                // call login
+                return this.login({email, password})
+            }
+            else{
+                return userAccount
             }
         } catch (error) {
-             throw error
+            throw error
+        }
+
+
+    }
+
+    async login({email, password}){
+        try {
+            return await this.account.createEmailPasswordSession(email, password)
+        } catch (error) {
+            throw error
+        }
+    }
+
+    async getCurrentUser(){
+        try {
+            await this.account.get()
+        } catch (error) {
+            throw error
+        }
+
+        return null
+    }
+
+    async logout(){
+        try{
+            await this.account.deleteSessions()
+        }catch(error){
+            throw error
         }
     }
 }
 
-const authService = new AuthSerivce()
+const authService = new AuthService()
 
 export default authService
